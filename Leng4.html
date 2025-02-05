@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        body {
+            background-color: lightpink;
+            font-family: 'Shadows Into Light', cursive;
+            text-align: center;
+            color: rgb(179, 17, 162);
+            margin: 0;
+            animation: float 3s infinite ease-in-out;
+            
+        }
+        .heart {
+            position: absolute;
+            font-size: 2em;
+            color: red;
+            animation: hearts 5s linear infinite;
+        }
+        h1 {
+            font-size: 4em;
+            margin-top: 20px;
+        
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .gallery img {
+            margin: 10px;
+            border: 5px solid white;
+            border-radius: 10px;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            position: relative;
+            animation: float 3s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-5px, -5px); }
+            50% { transform: translate(5px, 5px); }
+            75% { transform: translate(-5px, 5px); }
+        }
+        .gallery img.active {
+            transform: scale(2) translate(0, -50%);
+            z-index: 30;
+            position: fixed;
+            top: 70%;
+            left: 50%;
+            margin: 0;
+            animation: none;
+        }
+        .message {
+            display: none;
+            font-size: 1.5em;
+            margin-top: 20px;
+            position: fixed;
+            top: 90%;
+            left: 20%;
+            transform: translateX(-50%);
+            z-index: 20;
+            background: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        @keyframes move {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(10px, 10px); }
+            50% { transform: translate(-10px, -10px); }
+            75% { transform: translate(-10px, 10px); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes hearts {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day!</h1>
+    <div class="gallery">
+        <img src="H1.jpg" alt="Valentine's Day Image 1" data-message="You are my sunshine!">
+        <img src="h2.jpg"Valentine's Day Image 2" data-message="My heart beats for you!">
+        <img src="H3.jpg" alt="Valentine's Day Image 3" data-message="Love you to the moon and back!">
+        <img src="H4.jpg" alt="Valentine's Day Image 4" data-message="You make my world brighter!">
+        <img src="H6.jpg" alt="Valentine's Day Image 5" data-message="Forever and always!">
+        <img src="H7.jpg" alt="Valentine's Day Image 6" data-message="You are my everything!">
+        <img src="H8.jpg" alt="Valentine's Day Image 7" data-message="My love for you is endless!">
+        <img src="H9.jpg" alt="Valentine's Day Image 8" data-message="You complete me!">
+        <img src="H10.jpg" alt="Valentine's Day Image 9" data-message="You are my forever!">
+        <img src="H11.jpg" alt="Valentine's Day Image 10" data-message="I cherish you!">
+    </div>
+   <!-- heart -->
+   <div class="heart" style="left: 10%;">❤️</div>
+   <div class="heart" style="left: 20%;">❤️</div>
+   <div class="heart" style="left: 30%;">❤️</div>
+   <div class="heart" style="left: 40%;">❤️</div>
+   <div class="heart" style="left: 50%;">❤️</div>
+   <div class="heart" style="left: 60%;">❤️</div>
+   <div class="heart" style="left: 70%;">❤️</div>
+   <div class="heart" style="left: 80%;">❤️</div>
+   <div class="heart" style="left: 90%;">❤️</div>
+    <div class="message" id="valentineMessage"></div>
+
+    <script>
+        const images = document.querySelectorAll('.gallery img');
+        const messageBox = document.getElementById('valentineMessage');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                // Remove active class from all images
+                images.forEach(image => image.classList.remove('active'));
+                // Add active class to the clicked image
+                img.classList.add('active');
+                // Display the message
+                messageBox.textContent = img.getAttribute('data-message');
+                messageBox.style.display = 'block';
+            });
+        });
+
+        // Click outside to reset
+        document.addEventListener('click', (e) => {
+            if (!e.target.matches('.gallery img')) {
+                images.forEach(img => img.classList.remove('active'));
+                messageBox.style.display = 'none';
+            }
+        });
+    </script>
+    
+</body>
+</html>
